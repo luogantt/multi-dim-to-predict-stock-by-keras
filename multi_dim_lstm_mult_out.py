@@ -47,7 +47,7 @@ dd1=df[['open','high','p_change','low','close','volume']]
 #dd4=dd1['close']
 
 mm=1
-length=3
+length=14
 def load_data(df, sequence_length=length, split=0.8):
 
     #df = pd.read_csv(file_name, sep=',', usecols=[1])
@@ -104,7 +104,7 @@ def train_model(train_x, train_y, test_x, test_y):
     model = build_model()
 
     try:
-        model.fit(train_x, train_y, batch_size=30, nb_epoch=10000, validation_split=0.1)
+        model.fit(train_x, train_y, batch_size=30, nb_epoch=3000, validation_split=0.1)
         predict = model.predict(test_x)
         predict = np.reshape(predict, (predict.size, ))
     except KeyboardInterrupt:
