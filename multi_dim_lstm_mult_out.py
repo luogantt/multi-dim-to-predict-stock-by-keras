@@ -27,7 +27,7 @@ from pandas import DataFrame
 from numpy import row_stack,column_stack
 import pandas
 from dateutil.parser import parse
-df=ts.get_hist_data('000673',start='2017-12-15',end='2018-05-23')
+df=ts.get_hist_data('000673',start='2016-12-15',end='2018-05-23')
 
 df=df .sort_index()
 '''
@@ -46,8 +46,8 @@ dd1=df[['open','high','p_change','low','close','volume']]
 
 #dd4=dd1['close']
 
-mm=1
-length=14
+mm=3
+length=30
 def load_data(df, sequence_length=length, split=0.8):
 
     #df = pd.read_csv(file_name, sep=',', usecols=[1])
@@ -137,6 +137,10 @@ if __name__ == '__main__':
     #train_y=train_y[:,:,2]
     #test_y=test_y[:,:,2]
     predict_y, test_y = train_model(train_x, train_y, test_x, test_y)
+    
+    predict_y=predict_y.reshape(-1,3)
+    
+    
     #predict_y = scaler.inverse_transform([[i] for i in predict_y])
     #test_y = scaler.inverse_transform(test_y)
     
@@ -161,16 +165,18 @@ if __name__ == '__main__':
     plt.show()
     '''
     
-    fig2 = plt.figure(2)
-    plt.plot(predict_y[-10:], 'g:')
-    ttt=list(range(len(predict_y)))
-    #plt.scatter(ttt,predict_y,s=30,c='green',marker='o',alpha=0.5,label='predict')
-    
-    #plt.scatter(ttt,test_y,s=10,c='blue',marker='x',alpha=0.5,label='test_y')
-    
-    plt.plot(test_y[-10:], 'r-')
-    plt.show()
-    
+    for  p in range(predict_y.shape[0]):
+        
+        fig2 = plt.figure(2)
+        plt.plot(predict_y[p], 'g:')
+        ttt=list(range(len(predict_y)))
+        #plt.scatter(ttt,predict_y,s=30,c='green',marker='o',alpha=0.5,label='predict')
+        
+        #plt.scatter(ttt,test_y,s=10,c='blue',marker='x',alpha=0.5,label='test_y')
+        
+        plt.plot(test_y[p], 'r-')
+        plt.show()
+        
     
     
     
