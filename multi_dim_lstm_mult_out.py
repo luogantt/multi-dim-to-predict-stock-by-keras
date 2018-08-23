@@ -15,7 +15,7 @@ from keras.layers import LSTM, Dense, Activation
 
 
 from matplotlib.dates import DateFormatter, WeekdayLocator, DayLocator, MONDAY,YEARLY
-from matplotlib.finance import quotes_historical_yahoo_ohlc, candlestick_ohlc
+#from matplotlib.finance import quotes_historical_yahoo_ohlc, candlestick_ohlc
 #import matplotlib
 import tushare as ts
 import pandas as pd
